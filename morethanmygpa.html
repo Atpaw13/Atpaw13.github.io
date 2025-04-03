@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoreThanMyGPA | HOSA Mental Health Initiative</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        :root {
+            --primary-teal: #00B4D8;
+            --dark-teal: #0077B6;
+            --light-teal: #90E0EF;
+            --white: #ffffff;
+            --light-gray: #f8f9fa;
+            --happy-yellow: #FFD166;
+            --happy-orange: #FF9A3C;
+            --happy-pink: #EF476F;
+            --happy-green: #06D6A0;
+            --soft-purple: #B8B8FF;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(-45deg, var(--light-teal), var(--soft-purple), var(--light-gray), var(--primary-teal));
+            background-size: 400% 400%;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+            animation: gradientBG 15s ease infinite;
+        }
+        
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(90deg, var(--primary-teal), var(--dark-teal));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-bottom: 5px solid var(--light-teal);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: -50px;
+            left: -50px;
+            width: 100px;
+            height: 100px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: floatBubble 15s infinite linear;
+        }
+        
+        header::after {
+            content: "";
+            position: absolute;
+            bottom: -30px;
+            right: -30px;
+            width: 60px;
+            height: 60px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: floatBubble 12s infinite linear reverse;
+        }
+        
+        header h1 {
+            margin: 0;
+            font-size: 3rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 1;
+        }
+        
+        header p {
+            margin: 0.5rem 0 0;
+            font-size: 1.2rem;
+            font-weight: 300;
+            position: relative;
+            z-index: 1;
+        }
+        
+        nav {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        nav li {
+            padding: 1rem 2rem;
+            position: relative;
+        }
+        
+        nav li::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background: var(--primary-teal);
+            transition: all 0.3s;
+            transform: translateX(-50%);
+        }
+        
+        nav li:hover::after {
+            width: 70%;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--dark-teal);
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: var(--primary-teal);
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(0, 180, 216, 0.8), rgba(0, 119, 182, 0.9)), url('https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 5rem 1rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--white);
+            color: var(--dark-teal);
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: 2px solid var(--white);
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn:hover {
+            background-color: transparent;
+            color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn-teal {
+            background-color: var(--primary-teal);
+            color: white;
+            border-color: var(--primary-teal);
+        }
+        
+        .btn-teal:hover {
+            background-color: transparent;
+            color: var(--primary-teal);
+        }
+        
+        .btn-pink {
+            background-color: var(--happy-pink);
+            color: white;
+            border-color: var(--happy-pink);
+        }
+        
+        .btn-pink:hover {
+            background-color: transparent;
+            color: var(--happy-pink);
+        }
+        
+        .btn-yellow {
+            background-color: var(--happy-yellow);
+            color: #333;
+            border-color: var(--happy-yellow);
+        }
+        
+        .btn-yellow:hover {
+            background-color: transparent;
+            color: #333;
+        }
+        
+        section {
+            padding: 3rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            color: var(--dark-teal);
+            margin-bottom: 2rem;
+            font-size: 2.2rem;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-teal), var(--dark-teal));
+            margin: 0.5rem auto 0;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+        
+        .about-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .about-image img:hover {
+            transform: scale(1.03);
+        }
+        
+        .tip-generator {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            transition: transform 0.3s;
+        }
+        
+        .tip-generator:hover {
+            transform: translateY(-5px);
+        }
+        
+        .tip-display {
+            background-color: var(--light-gray);
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            border-left: 5px solid var(--primary-teal);
+            position: relative;
+        }
+        
+        .tip-display::before {
+            content: '"';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 3rem;
+            color: var(--primary-teal);
+            opacity: 0.3;
+            font-family: serif;
+        }
+        
+        .tip-display::after {
+            content: '"';
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-size: 3rem;
+            color: var(--primary-teal);
+            opacity: 0.3;
+            font-family: serif;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-teal);
+            color: white;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        
+        .social-icon:hover {
+            background-color: var(--dark-teal);
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        footer {
+            background: linear-gradient(90deg, var(--dark-teal), var(--primary-teal));
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+            position: relative;
+        }
+        
+        footer p {
+            margin: 0.5rem 0;
+        }
+        
+        /* Interactive Games Section */
+        .games-section {
+            background-color: var(--light-gray);
+            padding: 3rem 0;
+        }
+        
+        .games-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        
+        .game-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 300px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .game-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .game-image {
+            height: 150px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .game-content {
+            padding: 1.5rem;
+        }
+        
+        .game-title {
+            color: var(--dark-teal);
+            margin-top: 0;
+        }
+        
+        /* Breathing Exercise Game */
+        .breathing-game {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .breathing-circle {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background-color: var(--happy-green);
+            margin: 2rem auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            transition: all 0.5s ease-in-out;
+            box-shadow: 0 0 20px rgba(6, 214, 160, 0.3);
+        }
+        
+        .breathing-instructions {
+            margin: 1rem 0;
+            font-size: 1.1rem;
+        }
+        
+        /* Gratitude Journal */
+        .gratitude-journal {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            max-width: 600px;
+            margin: 2rem auto;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .journal-entry {
+            margin-bottom: 1rem;
+        }
+        
+        .journal-input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .journal-input:focus {
+            outline: none;
+            border-color: var(--primary-teal);
+        }
+        
+        .journal-entries {
+            margin-top: 1rem;
+            border-top: 1px solid #eee;
+            padding-top: 1rem;
+        }
+        
+        .entry-item {
+            background-color: var(--light-gray);
+            padding: 0.8rem;
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        .entry-item button {
+            background-color: var(--happy-pink);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 0.3rem 0.6rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .entry-item button:hover {
+            background-color: #d63a5f;
+        }
+        
+        /* Mood Tracker */
+        .mood-tracker {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            max-width: 800px;
+            margin: 2rem auto;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .mood-options {
+            display: flex;
+            justify-content: space-around;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .mood-option {
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s;
+            margin: 0.5rem;
+            padding: 0.5rem;
+            border-radius: 8px;
+        }
+        
+        .mood-option:hover {
+            transform: scale(1.1);
+            background-color: rgba(0, 180, 216, 0.1);
+        }
+        
+        .mood-option.selected {
+            background-color: rgba(0, 180, 216, 0.2);
+            transform: scale(1.05);
+        }
+        
+        .mood-emoji {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .mood-chart {
+            margin-top: 2rem;
+            height: 200px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 1rem;
+        }
+        
+        .chart-bar {
+            width: 30px;
+            background: linear-gradient(to top, var(--primary-teal), var(--happy-green));
+            margin: 0 5px;
+            position: relative;
+            border-radius: 5px 5px 0 0;
+            transition: height 0.5s ease;
+        }
+        
+        .chart-day {
+            position: absolute;
+            bottom: -25px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 0.8rem;
+        }
+        
+        /* Confetti */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background-color: var(--happy-yellow);
+            opacity: 0;
+            z-index: 999;
+            animation: confettiFall 5s linear forwards;
+        }
+        
+        /* Animations */
+        @keyframes floatBubble {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+            }
+        }
+        
+        @keyframes confettiFall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        /* Daily Challenge */
+        .daily-challenge {
+            background-color: var(--happy-yellow);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .challenge-title {
+            color: #333;
+            margin-top: 0;
+        }
+        
+        .challenge-complete {
+            background-color: var(--happy-green);
+            color: white;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav li {
+                padding: 0.5rem 0;
+            }
+            
+            .hero {
+                padding: 3rem 1rem;
+            }
+            
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+            
+            .games-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .game-card {
+                width: 100%;
+                max-width: 350px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 class="animate__animated animate__fadeInDown">MoreThanMyGPA</h1>
+            <p class="animate__animated animate__fadeInUp animate__delay-1s">HOSA Mental Health Promotion Campaign</p>
+        </div>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">Who We Are</a></li>
+            <li><a href="#games">Interactive Games</a></li>
+            <li><a href="#tips">Mental Health Tips</a></li>
+            <li><a href="#resources">Resources</a></li>
+        </ul>
+    </nav>
+    
+    <section id="home" class="hero">
+        <div class="container">
+            <h2 class="animate__animated animate__fadeIn animate__delay-1s">You Are More Than Your GPA</h2>
+            <p class="animate__animated animate__fadeIn animate__delay-1s">Join us in promoting mental wellness, self-care, and holistic success for students everywhere. Your worth extends far beyond academic achievements.</p>
+            <a href="#about" class="btn btn-teal animate__animated animate__pulse animate__infinite animate__slow">Learn More</a>
+        </div>
+    </section>
+    
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">Who We Are</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p><strong>MoreThanMyGPA</strong> is a HOSA mental health initiative dedicated to helping students recognize their inherent worth beyond academic performance.</p>
+                    <p>We focus on cultivating resilience through positive psychology, community support, and evidence-based mental health practices. Our mission is to create a culture where students feel valued for their whole selves, not just their grades.</p>
+                    <p>Through social media engagement and campus initiatives, we provide practical mindfulness techniques, stress management strategies, and reminders that success comes in many forms. We believe that by nurturing mental wellness, students can achieve both personal fulfillment and academic success.</p>
+                    <p>Join us in building a community where every student knows they are more than a letter grade, and where mental health is prioritized as the foundation for all achievement.</p>
+                    <div class="daily-challenge" id="dailyChallenge">
+                        <h3 class="challenge-title">Today's Wellness Challenge</h3>
+                        <p id="challengeText">Take a 5-minute walk outside and notice three beautiful things around you.</p>
+                        <button id="challengeBtn" class="btn btn-yellow">I Completed This!</button>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1571260899304-425eee4c7efc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Students supporting each other">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="games" class="games-section">
+        <div class="container">
+            <h2 class="section-title">Interactive Mental Wellness Games</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 2rem;">Engage with these interactive tools designed to boost your mental health and reduce stress in fun, creative ways.</p>
+            
+            <div class="games-container">
+                <div class="game-card">
+                    <div class="game-image" style="background-image: url('https://images.unsplash.com/photo-1545205597-3d9d02c29597?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                    <div class="game-content">
+                        <h3 class="game-title">Breathing Exercise</h3>
+                        <p>Practice deep breathing to reduce stress and anxiety with our guided exercise.</p>
+                        <a href="#breathing-game" class="btn btn-teal">Try It Now</a>
+                    </div>
+                </div>
+                
+                <div class="game-card">
+                    <div class="game-image" style="background-image: url('https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                    <div class="game-content">
+                        <h3 class="game-title">Gratitude Journal</h3>
+                        <p>Boost your positivity by recording things you're grateful for each day.</p>
+                        <a href="#gratitude-journal" class="btn btn-teal">Start Journaling</a>
+                    </div>
+                </div>
+                
+                <div class="game-card">
+                    <div class="game-image" style="background-image: url('https://images.unsplash.com/photo-1493612276216-ee3925520721?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                    <div class="game-content">
+                        <h3 class="game-title">Mood Tracker</h3>
+                        <p>Track your emotional patterns and gain insights into your wellbeing.</p>
+                        <a href="#mood-tracker" class="btn btn-teal">Track Your Mood</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="breathing-game" class="breathing-game">
+                <h3>Guided Breathing Exercise</h3>
+                <p class="breathing-instructions">Breathe in as the circle expands, hold when it's full, and breathe out as it contracts.</p>
+                <div class="breathing-circle" id="breathCircle">Breathe In</div>
+                <button id="startBreathing" class="btn btn-teal">Start Breathing Exercise</button>
+                <button id="stopBreathing" class="btn btn-pink" style="display: none;">Pause</button>
+            </div>
+            
+            <div id="gratitude-journal" class="gratitude-journal">
+                <h3>Daily Gratitude Journal</h3>
+                <div class="journal-entry">
+                    <input type="text" class="journal-input" id="gratitudeInput" placeholder="What are you grateful for today?">
+                    <button id="addGratitude" class="btn btn-teal">Add to Journal</button>
+                </div>
+                <div class="journal-entries" id="journalEntries">
+                    <p>No entries yet. Add your first gratitude note above!</p>
+                </div>
+            </div>
+            
+            <div id="mood-tracker" class="mood-tracker">
+                <h3>How Are You Feeling Today?</h3>
+                <p>Select your current mood to track your emotional patterns over time.</p>
+                
+                <div class="mood-options">
+                    <div class="mood-option" data-mood="5">
+                        <div class="mood-emoji">😄</div>
+                        <div>Excellent</div>
+                    </div>
+                    <div class="mood-option" data-mood="4">
+                        <div class="mood-emoji">😊</div>
+                        <div>Good</div>
+                    </div>
+                    <div class="mood-option" data-mood="3">
+                        <div class="mood-emoji">😐</div>
+                        <div>Okay</div>
+                    </div>
+                    <div class="mood-option" data-mood="2">
+                        <div class="mood-emoji">😕</div>
+                        <div>Struggling</div>
+                    </div>
+                    <div class="mood-option" data-mood="1">
+                        <div class="mood-emoji">😞</div>
+                        <div>Difficult</div>
+                    </div>
+                </div>
+                
+                <h4>Your Mood This Week</h4>
+                <div class="mood-chart" id="moodChart">
+                    <!-- Chart bars will be added by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="tips" class="tips">
+        <div class="container">
+            <h2 class="section-title">Mental Health Tip Generator</h2>
+            <div class="tip-generator">
+                <p>Click the button below for a random mental health tip to incorporate into your daily routine:</p>
+                <div class="tip-display" id="tipDisplay">
+                    Ready for your first tip? Click the button!
+                </div>
+                <button class="btn btn-teal" id="tipButton">Get a Mental Health Tip</button>
+                <button class="btn btn-yellow" id="favoriteTip" style="display: none;">❤️ Save This Tip</button>
+                <div id="favoriteTips" style="margin-top: 1rem; text-align: left;"></div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="resources" class="resources">
+        <div class="container">
+            <h2 class="section-title">Resources & Support</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>You're Not Alone</h3>
+                    <p>If you or someone you know is struggling with mental health challenges, remember that help is available. Here are some resources:</p>
+                    <ul>
+                        <li>National Suicide Prevention Lifeline: 988</li>
+                        <li>Crisis Text Line: Text HOME to 741741</li>
+                        <li>Your school counseling center</li>
+                        <li>Local mental health organizations</li>
+                    </ul>
+                    <p>Follow us on Instagram for daily encouragement and mental health tips:</p>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/morethanmygpa/" class="social-icon" target="_blank">📷</a>
+                        <a href="#" class="social-icon">🐦</a>
+                        <a href="#" class="social-icon">📘</a>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Support system illustration" class="pulse">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 MoreThanMyGPA | HOSA Mental Health Promotion Campaign</p>
+            <p>Creating a culture of wellness beyond academics</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Mental Health Tips
+        const tips = [
+            "Practice the 4-7-8 breathing technique: Inhale for 4 seconds, hold for 7 seconds, exhale for 8 seconds. Repeat 3-4 times.",
+            "Take a 5-minute break every hour to stretch and reset your mind during study sessions.",
+            "Keep a gratitude journal - write down 3 things you're grateful for each day.",
+            "Connect with a friend or family member - social support is crucial for mental health.",
+            "Get outside for at least 15 minutes daily - sunlight and fresh air boost mood.",
+            "Practice positive self-talk - replace 'I have to' with 'I get to' in your daily language.",
+            "Try the 5-4-3-2-1 grounding technique: Name 5 things you see, 4 you feel, 3 you hear, 2 you smell, 1 you taste.",
+            "Set boundaries with your study time - quality matters more than quantity.",
+            "Prioritize sleep - aim for 7-9 hours to support cognitive function and emotional regulation.",
+            "Engage in creative activities - coloring, writing, or playing music can be therapeutic.",
+            "Practice progressive muscle relaxation - tense and release each muscle group from toes to head.",
+            "Limit social media use - set specific times to check rather than constant scrolling.",
+            "Celebrate small wins - acknowledge your progress, not just the end result.",
+            "Hydrate properly - dehydration can negatively impact mood and concentration.",
+            "Try mindfulness meditation - even 5 minutes can reduce stress and improve focus."
+        ];
+        
+        const tipButton = document.getElementById('tipButton');
+        const tipDisplay = document.getElementById('tipDisplay');
+        const favoriteTip = document.getElementById('favoriteTip');
+        const favoriteTips = document.getElementById('favoriteTips');
+        let currentTip = "";
+        
+        tipButton.addEventListener('click', () => {
+            const randomIndex = Math.floor(Math.random() * tips.length);
+            currentTip = tips[randomIndex];
+            tipDisplay.textContent = currentTip;
+            favoriteTip.style.display = "inline-block";
+            
+            // Add animation
+            tipDisplay.style.animation = 'none';
+            void tipDisplay.offsetWidth; // Trigger reflow
+            tipDisplay.style.animation = 'fadeIn 0.5s ease-in-out';
+        });
+        
+        favoriteTip.addEventListener('click', () => {
+            if (currentTip) {
+                // Remove the default message if it exists
+                if (favoriteTips.querySelector('p')) {
+                    favoriteTips.innerHTML = '';
+                }
+                
+                const savedTip = document.createElement('div');
+                savedTip.className = 'entry-item';
+                savedTip.innerHTML = `
+                    ${currentTip}
+                    <button class="remove-tip">×</button>
+                `;
+                favoriteTips.appendChild(savedTip);
+                
+                // Add confetti celebration
+                createConfetti();
+                
+                // Save to local storage
+                saveFavoriteTip(currentTip);
+            }
+        });
+        
+        favoriteTips.addEventListener('click', (e) => {
+            if (e.target.classList.contains('remove-tip')) {
+                e.target.parentElement.remove();
+                updateLocalStorage();
+                
+                // Show default message if no entries left
+                if (favoriteTips.children.length === 0) {
+                    favoriteTips.innerHTML = '<p>No saved tips yet. Save some favorites!</p>';
+                }
+            }
+        });
+        
+        function saveFavoriteTip(tip) {
+            let savedTips = JSON.parse(localStorage.getItem('favoriteTips')) || [];
+            savedTips.push(tip);
+            localStorage.setItem('favoriteTips', JSON.stringify(savedTips));
+        }
+        
+        function updateLocalStorage() {
+            const tips = Array.from(document.querySelectorAll('.entry-item')).map(item => 
+                item.textContent.replace('×', '').trim()
+            );
+            localStorage.setItem('favoriteTips', JSON.stringify(tips));
+        }
+        
+        function loadFavoriteTips() {
+            const savedTips = JSON.parse(localStorage.getItem('favoriteTips')) || [];
+            if (savedTips.length > 0) {
+                favoriteTips.innerHTML = '';
+                savedTips.forEach(tip => {
+                    const savedTip = document.createElement('div');
+                    savedTip.className = 'entry-item';
+                    savedTip.innerHTML = `
+                        ${tip}
+                        <button class="remove-tip">×</button>
+                    `;
+                    favoriteTips.appendChild(savedTip);
+                });
+            }
+        }
+        
+        // Breathing Exercise - FIXED VERSION
+        const breathCircle = document.getElementById('breathCircle');
+        const startBreathing = document.getElementById('startBreathing');
+        const stopBreathing = document.getElementById('stopBreathing');
+        let breathingInterval;
+        let isBreathing = false;
+        let breathPhase = 0; // 0=inhale, 1=hold, 2=exhale
+        let breathCount = 4; // Start with inhale count
+        
+        startBreathing.addEventListener('click', () => {
+            isBreathing = true;
+            startBreathing.style.display = "none";
+            stopBreathing.style.display = "inline-block";
+            breathPhase = 0;
+            breathCount = 4;
+            breathCircle.textContent = "Breathe In";
+            breathCircle.style.transform = "scale(1)";
+            startBreathAnimation();
+        });
+        
+        stopBreathing.addEventListener('click', () => {
+            isBreathing = false;
+            startBreathing.style.display = "inline-block";
+            stopBreathing.style.display = "none";
+            clearInterval(bre
